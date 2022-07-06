@@ -8,9 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var viewModel = ViewModel()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            VStack {
+                HStack {
+                    Text(viewModel.helloNameMessage)
+                }
+                List {
+                    NavigationLink(destination: {
+                        PlayView(viewModel: viewModel)
+                    }, label: {
+                        Text("Play")
+                    })
+                    NavigationLink(destination: {
+                        SettingsView(viewModel: viewModel)
+                    }, label: {
+                        Text("Settings")
+                    })
+                    NavigationLink(destination: {
+                        LeaderBoard(viewModel: viewModel)
+                    }, label: {
+                        Text("Leaderboard")
+                    })
+                }
+            }
+        }
     }
 }
 
